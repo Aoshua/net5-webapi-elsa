@@ -1,20 +1,14 @@
 using DataClasses;
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
+using Elsa.Persistence.EntityFramework.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Workflow.ActivityLibrary;
 
 namespace Net5WithElsa
@@ -46,7 +40,7 @@ namespace Net5WithElsa
 
             #region Database
             services.AddDbContext<DataContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("LocalContext"), b => b.MigrationsAssembly("Net5WithElsa"));
+                options.UseSqlServer(Configuration.GetConnectionString("LocalContext"));
             });
             services.AddSingleton(Configuration);
             #endregion
@@ -58,10 +52,10 @@ namespace Net5WithElsa
                 .UseEntityFrameworkPersistence(ef =>
                 {
                     ef.UseSqlServer(Configuration.GetConnectionString("LocalContext"));
-                })
+                }, true)
                 .AddConsoleActivities()
                 .AddActivity<GetBookGraphActivity>()
-                .AddHttpActivities(elsaSection.GetSection("Server").Bind)
+                .AddHttpActivities(elsaSection.GetSection("Http").Bind)
                 .AddQuartzTemporalActivities()
                 .AddJavaScriptActivities()
                 .AddWorkflowsFrom<Startup>()

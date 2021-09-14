@@ -31,7 +31,7 @@ namespace Workflow.ActivityLibrary.Services
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var obj = JsonSerializer.Deserialize<T>(content);
+                var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(content);
                 return obj;
             }
             else throw new Exception(response.ToString());

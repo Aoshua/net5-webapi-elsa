@@ -4,7 +4,6 @@ using Elsa.Attributes;
 using Elsa.Expressions;
 using Elsa.Services;
 using Elsa.Services.Models;
-using System;
 using System.Threading.Tasks;
 using Workflow.ActivityLibrary.Services;
 
@@ -13,6 +12,7 @@ namespace Workflow.ActivityLibrary
     [Activity(DisplayName = "Get Books Graph", Description = "Testing getting a book and related objects.", Category = "Custom Activities")]
     public class GetBookGraphActivity : Activity
     {
+        [ActivityInput(Hint = "The books's ID.", DefaultSyntax = SyntaxNames.JavaScript, SupportedSyntaxes = new string[] { SyntaxNames.JavaScript })]
         public int BookId { get; set; }
 
         protected override async ValueTask<IActivityExecutionResult> OnExecuteAsync(ActivityExecutionContext context)

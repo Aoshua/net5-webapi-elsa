@@ -1,4 +1,5 @@
 ﻿using DataClasses;
+using DataClasses.Library;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,7 +28,7 @@ namespace Net5WithElsa.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetBookGraph(int id)
+        public async Task<ActionResult<Book>> GetBookGraph(int id)
         {
             var book = await context.Books.AsNoTracking().Include(x => x.Publisher).Include(x => x.Author)
                 .Where(x => x.Id == id).FirstOrDefaultAsync();
