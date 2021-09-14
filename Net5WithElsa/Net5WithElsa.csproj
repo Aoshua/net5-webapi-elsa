@@ -5,21 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Elsa" Version="2.3.0-preview.139" />
-    <PackageReference Include="Elsa.Activities.Http" Version="2.3.0-preview.139" />
-    <PackageReference Include="Elsa.Activities.Temporal.Quartz" Version="2.3.0-preview.139" />
-    <PackageReference Include="Elsa.Persistence.EntityFramework.SqlServer" Version="2.3.0-preview.139" />
-    <PackageReference Include="Elsa.Server.Api" Version="2.3.0-preview.139" />
+    <PackageReference Include="Elsa" Version="2.3.0-preview.142" />
+    <PackageReference Include="Elsa.Activities.Http" Version="2.3.0-preview.142" />
+    <PackageReference Include="Elsa.Activities.Temporal.Quartz" Version="2.3.0-preview.142" />
+    <PackageReference Include="Elsa.Persistence.EntityFramework.SqlServer" Version="2.3.0-preview.142" />
+    <PackageReference Include="Elsa.Server.Api" Version="2.3.0-preview.142" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataClasses\DataClasses.csproj" />
+    <ProjectReference Include="..\Workflow.ActivityLibrary\Workflow.ActivityLibrary.csproj" />
   </ItemGroup>
 
 </Project>

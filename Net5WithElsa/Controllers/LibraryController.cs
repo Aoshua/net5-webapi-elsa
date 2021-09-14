@@ -25,5 +25,13 @@ namespace Net5WithElsa.Controllers
             var books = await context.Books.AsNoTracking().Include(x => x.Publisher).Include(x => x.Author).ToListAsync();
             return Ok(books);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetBookGraph(int id)
+        {
+            var book = await context.Books.AsNoTracking().Include(x => x.Publisher).Include(x => x.Author)
+                .Where(x => x.Id == id).FirstOrDefaultAsync();
+            return Ok(book);
+        }
     }
 }

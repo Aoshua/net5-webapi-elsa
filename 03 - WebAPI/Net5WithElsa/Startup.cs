@@ -1,6 +1,3 @@
-using DataClasses;
-using Elsa;
-using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,11 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Workflow.ActivityLibrary;
 
 namespace Net5WithElsa
 {
@@ -51,23 +48,10 @@ namespace Net5WithElsa
             services.AddSingleton(Configuration);
             #endregion
 
-            #region Elsa
-            var elsaSection = Configuration.GetSection("Elsa");
-
-            services.AddElsa(elsa => elsa
-                .UseEntityFrameworkPersistence(ef =>
-                {
-                    ef.UseSqlServer(Configuration.GetConnectionString("LocalContext"));
-                })
-                .AddConsoleActivities()
-                .AddActivity<GetBookGraphActivity>()
-                .AddHttpActivities(elsaSection.GetSection("Server").Bind)
-                .AddQuartzTemporalActivities()
-                .AddJavaScriptActivities()
-                .AddWorkflowsFrom<Startup>()
-            );
-
-            services.AddElsaApiEndpoints();
+            #region Stores
+            services
+                .AddTransient<LibraryStore>()
+                ;
             #endregion
         }
 
@@ -85,16 +69,7 @@ namespace Net5WithElsa
 
             app.UseRouting();
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .WithExposedHeaders("Content-Disposition")
-            );
-
             app.UseAuthorization();
-
-            app.UseHttpActivities(); // Elsa
 
             app.UseEndpoints(endpoints =>
             {
