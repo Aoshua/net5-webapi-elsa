@@ -21,7 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\DataClasses\DataClasses.csproj" />
-    <ProjectReference Include="..\Workflow.ActivityLibrary\Workflow.ActivityLibrary.csproj" />
+    <ProjectReference Include="..\Workflow\Workflow.csproj" />
   </ItemGroup>
 
 </Project>

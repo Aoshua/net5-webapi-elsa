@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contexts\**" />
+    <EmbeddedResource Remove="Contexts\**" />
+    <None Remove="Contexts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Elsa" Version="2.3.0-preview.142" />
+    <PackageReference Include="Elsa.Activities.Http" Version="2.3.0-preview.142" />
   </ItemGroup>
 
   <ItemGroup>

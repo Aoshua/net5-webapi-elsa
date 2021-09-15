@@ -6,7 +6,7 @@ using Elsa.Services;
 using Elsa.Services.Models;
 using System.Threading.Tasks;
 
-namespace Workflow.ActivityLibrary
+namespace Workflow.Activities
 {
     [Activity(DisplayName = "Get Books Graph", Description = "Testing getting a book and related objects.", Category = "Custom Activities")]
     public class GetBookGraphActivity : Activity
