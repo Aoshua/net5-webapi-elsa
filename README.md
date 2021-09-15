@@ -52,7 +52,7 @@ Note: this is assuming you already have the correct database tables and that you
 
 ### Using the Designer with Docker:
 * To do this, you first need an API acting as the Elsa server (plus whatever else you need your API to be). That API will be the `ELSA__SERVER__BASEURL` in the next step.
-* Run `docker run -t -i -e ELSA__SERVER__BASEURL='https://localhost:44333' -e ASPNETCORE_ENVIRONMENT='Development' -p 13000:80 elsaworkflows/elsa-dashboard-and-server:latest` and you're good to go.
+* Run `docker run -t -i -e ELSA__SERVER__BASEURL='https://localhost:44358' -e ASPNETCORE_ENVIRONMENT='Development' -p 13000:80 elsaworkflows/elsa-dashboard-and-server:latest` and you're good to go.
 
 ## General Notes:
 Running Web API with the Elsa Server adds the following tables to your database:
