@@ -1,35 +1,32 @@
-﻿using DataClasses;
+﻿using DataAccess;
 using DataClasses.Library;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace Net5WithElsa.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
     public class LibraryController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly LibraryStore libraryStore;
 
-        public LibraryController(DataContext context)
+        public LibraryController(LibraryStore libraryStore)
         {
-            this.context = context;
+            this.libraryStore = libraryStore;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetBooksGraph()
         {
-            var books = await context.Books.AsNoTracking().Include(x => x.Publisher).Include(x => x.Author).ToListAsync();
+            var books = await libraryStore.GetBooksGraph();
             return Ok(books);
         }
 
         [HttpGet]
         public async Task<ActionResult<Book>> GetBookGraph(int id)
         {
-            var book = await context.Books.AsNoTracking().Include(x => x.Publisher).Include(x => x.Author)
-                .Where(x => x.Id == id).FirstOrDefaultAsync();
+            var book = await libraryStore.GetBookGraph(id);
             return Ok(book);
         }
     }

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Net5WithElsa
+namespace WebAPI
 {
     public class Program
     {

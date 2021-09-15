@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Net5WithElsa.Migrations
+namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20210914165449_InitialCreate")]

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Net5WithElsa.Migrations
+namespace WebAPI.Migrations
 {
     public partial class InitialCreate : Migration
     {
