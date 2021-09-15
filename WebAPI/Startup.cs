@@ -1,3 +1,4 @@
+using DataAccess;
 using DataClasses;
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Workflow.ActivityLibrary;
 
-namespace Net5WithElsa
+namespace WebAPI
 {
     public class Startup
     {
@@ -43,6 +44,12 @@ namespace Net5WithElsa
                 options.UseSqlServer(Configuration.GetConnectionString("LocalContext"));
             });
             services.AddSingleton(Configuration);
+            #endregion
+
+            #region Stores
+            services
+                  .AddTransient<LibraryStore>()
+                  ;
             #endregion
 
             #region Elsa

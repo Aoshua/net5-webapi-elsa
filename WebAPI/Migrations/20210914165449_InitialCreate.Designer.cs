@@ -4,14 +4,16 @@ using DataClasses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Net5WithElsa.Migrations
+namespace WebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210914165449_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,26 +46,6 @@ namespace Net5WithElsa.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateOfBirth = new DateTime(1802, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfDeath = new DateTime(1885, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Victor",
-                            LastName = "Hugo",
-                            MiddleName = ""
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateOfBirth = new DateTime(1926, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfDeath = new DateTime(2016, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Nelle",
-                            LastName = "Lee",
-                            MiddleName = "Harper"
-                        });
                 });
 
             modelBuilder.Entity("DataClasses.Library.Book", b =>
@@ -78,12 +60,6 @@ namespace Net5WithElsa.Migrations
 
                     b.Property<int>("Format")
                         .HasColumnType("int");
-
-                    b.Property<string>("Isbn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("OriginalPublication")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("PageCount")
                         .HasColumnType("int");
@@ -101,30 +77,6 @@ namespace Net5WithElsa.Migrations
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 1,
-                            Format = 0,
-                            Isbn = "045141943X",
-                            OriginalPublication = new DateTime(1862, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PageCount = 1488,
-                            PublisherId = 2,
-                            Title = "Les Misérables"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = 2,
-                            Format = 1,
-                            Isbn = "0062420704",
-                            OriginalPublication = new DateTime(1960, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PageCount = 336,
-                            PublisherId = 1,
-                            Title = "To Kill a Mockingbird"
-                        });
                 });
 
             modelBuilder.Entity("DataClasses.Library.Publisher", b =>
@@ -155,28 +107,6 @@ namespace Net5WithElsa.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "New York",
-                            State = 31,
-                            Title = "Harper Perennial",
-                            Zip = ""
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address1 = "",
-                            Address2 = "",
-                            City = "New York",
-                            State = 31,
-                            Title = "Signet Classes",
-                            Zip = ""
-                        });
                 });
 
             modelBuilder.Entity("DataClasses.Library.Book", b =>

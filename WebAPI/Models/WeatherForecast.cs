@@ -1,6 +1,6 @@
 using System;
 
-namespace Net5WithElsa.Models
+namespace WebAPI.Models
 {
     public class WeatherForecast
     {
